@@ -1,0 +1,60 @@
+### Function to estimate rho
+### Author: Konstantin Kashin
+### August 1, 2013
+
+# input: vector of residuals for a given panel
+# k is rank
+# output: correlation coefficient
+# function is robust to panels with 1 time period
+est.rho <- function(e,k,rhotype){
+	mat <- embed(e,2)
+	
+	if(rhotype %in% c("br","fr")){
+		if(rhotype=="br"){
+		# backward regression
+		# col 1 is resid, col 2 is lag
+		num <- sum(apply(mat,MARGIN=1,prod),na.rm=TRUE)
+		denom <- sum((mat[!is.na(mat[,1]),2])^2,na.rm=TRUE)
+		rho <- num/denom
+		} else {
+		#forward regression
+		# col 2 is resid, col 1 is forward
+		num <- sum(apply(mat,MARGIN=1,prod),na.rm=TRUE)
+		denom <- sum((mat[!is.na(mat[,2]),1])^2,na.rm=TRUE)
+		rho <- num/denom
+		}
+	} else if(rhotype %in% c("dw","theil-nagar")){
+		sse <- sum(e^2,na.rm=TRUE)
+		sseN <- length(na.omit(e))
+		dwal <- sum((mat[,1]-mat[,2])^2, na.rm=TRUE)/sse
+		
+		if(rhotype=="dw"){
+		# Durbin-Watson calculation 
+		# see page 923 of Greene
+		#print(paste("D-W rho:",1-dwal/2))
+		rho <- 1-dwal/2
+		} else{
+		# Theil-Nagar
+		rho <- (sseN^2 * (1-dwal/2) + (k-1)^2)/(sseN^2 - (k-1)^2)
+		}	
+	} else{
+		sse <- sum(e^2,na.rm=TRUE)
+		sseN <- length(na.omit(e))
+		cov <- sum(apply(mat,MARGIN=1,prod),na.rm=TRUE)
+		# time-series rho
+		rho <- cov/sse
+		if(rhotype=="theil"){
+			# Theil rho
+			# scale by (T-K)/(T-1)
+			#r <- cov/sse (estimate of rho)
+			# page 926 of Greene
+			Ncov <- length(na.omit(apply(mat,MARGIN=1,prod)))
+			#print((sseN - k+1)/Ncov*rho) -- THIS MATCHES THEIL in Stata
+			#print((sseN - k)/Ncov*rho) -- THIS IS FORMULA from 926 but doesn't match
+			# sseN-1 = Ncov
+			rho <- (sseN - k)/Ncov*rho
+
+		}
+	}
+	rho
+}

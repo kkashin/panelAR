@@ -1,0 +1,7 @@
+export(panelAR, runs.analysis)
+ 
+S3method(summary, panelAR)
+S3method(print, panelAR)
+S3method(plot, panelAR)
+S3method(predict, panelAR)
+S3method(vcov, panelAR)
