@@ -7,7 +7,7 @@ getRuns <- function(x,times){
 	return(run.table)
 }
 
-runs.analysis <- function(object){
+run.analysis <- function(object){
 	if(class(object)!="panelAR"){
 		stop("object must be of class 'panelAR'.",call.=FALSE)
 	}

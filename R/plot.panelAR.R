@@ -12,12 +12,12 @@ plot.panelAR <- function(object,legend=TRUE,rot.axis=c(0,0),...){
             length = N.time), tck = 0, labels=FALSE, lwd = 0, las = 2)
 	text(seq(from = 0, to = 1, 
             length = N.time), par("usr")[3], labels = times, srt = rot.axis[1], pos = 1, 
-            xpd =TRUE)
+            xpd =TRUE, cex=par("cex.axis"))
     axis(2, labels = FALSE, at = seq(from = 0, 
             to = 1, length = N.panel), tck = 0, lwd = 0, 
             las = 1)
     text(par("usr")[1],seq(from = 0, to = 1, 
-            length = N.panel), labels =units, pos = 2, xpd = TRUE, cex=0.6, 
+            length = N.panel), labels =units, pos = 2, xpd = TRUE, cex=par("cex.axis"), 
             srt=rot.axis[2])
 	if (legend) {
            par(xpd = TRUE)

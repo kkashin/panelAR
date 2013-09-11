@@ -15,7 +15,7 @@ install.packages("panelAR")
 ### Installing unstable developer version:
 ```R
 require(devtools)
-install_github("panelAR", user = "kkashin", ref = "develop")
+install_github("panelAR", user = "kkashin", ref = "master")
 ```
 
 [R]: http://cran.r-project.org

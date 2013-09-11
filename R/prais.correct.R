@@ -13,7 +13,7 @@ prais.correct <- function(method,env.base){
 	N.times <- get("N.times",envir=env.base)
 	N.units <- get("N.units",envir=env.base)
 	bound.rho <- get("bound.rho",envir=env.base)
-	rho.na.action <- get("rho.na.action",envir=env.base)
+	rho.na.rm <- get("rho.na.rm",envir=env.base)
 	rhotype <- get("rhotype",envir=env.base) 
 	obs.mat <- get("obs.mat",envir=env.base)
 	rank <- get("rank",envir=env.base)
@@ -28,8 +28,8 @@ prais.correct <- function(method,env.base){
 		
 		### deal with missing rhos
 		if(any(is.na(rhos))){
-			if(rho.na.action=="none"){
-				stop("Cannot estimate at least one panel-specific autocorrelation.",call.=FALSE)
+			if(!rho.na.rm){
+				stop("Cannot estimate at least one panel-specific autocorrelation. Consider setting rho.na.rm to 'TRUE'.",call.=FALSE)
 			} else {
 				if(method=="ar1"){
 					rhos <- na.omit(rhos)

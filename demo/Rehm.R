@@ -1,16 +1,44 @@
-load("/Users/Kostya/Desktop/panelFit/R/panelFit/data/Rehm.RData")
+#load("~/Desktop/Git/panelAR/data/Rehm.RData")
 
-### Replication of Rehm (2011), Table 3
-### PCSE, Common AR1
+user.prompt <- function (x) {
+ 	ANSWER <- readline(paste("\nType 'y' to continue to", x,"or 'n' to quit: ",sep=" "))  
+	if (substr(ANSWER, 1, 1) == "n")
+         {stop("Function terminated by user.")}
+	}
 
-## Specification 1
-out <- panelFit(NURR ~ gini, data=Rehm, panelVar="ccode", timeVar="year", autoCorrType="common", panelCorrType="pcse", method="OLS",rho.na.action="omit", panel.weight="t-1", bound.rho=TRUE)
-summary(out)
+Rehm <- function()
+{
+    message("Replication of Rehm (2011)'...")
+    
+    cat("\n")
+    cat("Loading data...\n")
+    data(Rehm)
+    cat("> data(Rehm)\n")	
+    	
+	## Specification 1
+	cat("> out1 <- panelAR(NURR ~ gini, data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	out1 <- panelAR(NURR ~ gini, data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> summary(out1)")
+	summary(out1)
+	
+	user.prompt("loop over specifications 2-8")
+	
+	## Loop over specifications 2-8
+	cat("> controls <- c('mean_ur', 'selfemp', 'cum_right', 'tradeunion', 'deficit', 'tradeopen', 'gdp_growth')")
+	controls <- c('mean_ur', 'selfemp', 'cum_right', 'tradeunion', 'deficit', 'tradeopen', 'gdp_growth')
+	cat("> for(c in 1:length(controls)){\neval(parse(text=paste(\"out <- panelAR(NURR ~ gini +\", controls[c] ,\", data=Rehm, panelVar='ccode',timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)\",sep=\"\")))\nprint(summary(out))\n}")
+	for(c in 1:length(controls)){
+		eval(parse(text=paste("out <- panelAR(NURR ~ gini +", controls[c] ,", data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)",sep="")))
+		print(summary(out))
+	}
+	
+	user.prompt("specification 9")
+	
+	## Specification 9
+	cat("> out9 <- panelAR(NURR ~ ., data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	out9 <- panelAR(NURR ~ ., data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> summary(out9)")
+	summary(out9)
+}
 
-## Specification 2
-summary(panelFit(NURR ~ gini + mean_ur, data=Rehm, panelVar="ccode", timeVar="year", autoCorrType="common", panelCorrType="pcse", method="OLS",rho.na.action="omit", panel.weight="t-1", bound.rho=TRUE))
-
-### Specification 9
-out <- panelFit(NURR ~ gini + mean_ur + selfemp + cum_right + tradeunion + deficit + tradeopen + gdp_growth, data=Rehm, panelVar="ccode", timeVar="year", autoCorrType="common", panelCorrType="pcse", method="OLS",rho.na.action="omit", panel.weight="t-1", bound.rho=TRUE)
-# table of coefficients
-summary(out)
+Rehm()

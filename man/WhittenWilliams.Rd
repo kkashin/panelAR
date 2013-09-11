@@ -41,4 +41,4 @@
 %\references{
 %}
 
-\seealso{\code{\link{panelAR}} for examples which use \code{WhittenWilliams}.}
+\seealso{\code{\link{panelAR}} and \code{\link{demo(WhittenWilliams)}} for examples which use \code{WhittenWilliams}.}

@@ -47,7 +47,4 @@
 
 \source{Brooks, Sarah M. and Marcus J. Kurtz. 2012. \dQuote{Paths to Financial Policy Diffusion: Statist Legacies in Latin America's Globalization.} \emph{International Organization} 66:95-128.}
 
-%\references{
-%}
-
-\seealso{\code{\link{panelAR}} for examples which use \code{BrookKurtz}.}
+\seealso{\code{\link{panelAR}} and \code{\link{demo(BrookKurtz)}} for examples which use \code{BrookKurtz}.}

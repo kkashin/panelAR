@@ -3,7 +3,7 @@
 ### August 25, 2013
 
 panelAR <- function(formula, data, panelVar, timeVar, autoCorr = c("ar1", 
-    "none", "psar1"), panelCorrMethod = c("none","phet","pcse","pwls","parks"), rhotype ="breg", bound.rho = FALSE, rho.na.action = c("none", "omit"), panel.weight = c("t-1", "t"), dof.correction = FALSE, complete.case = FALSE, seq.times = FALSE,  singular.ok=TRUE) {
+    "none", "psar1"), panelCorrMethod = c("none","phet","pcse","pwls","parks"), rhotype ="breg", bound.rho = FALSE, rho.na.rm = FALSE, panel.weight = c("t-1", "t"), dof.correction = FALSE, complete.case = FALSE, seq.times = FALSE,  singular.ok=TRUE) {
     # save environment
     env.base <- environment()
     
@@ -30,11 +30,13 @@ panelAR <- function(formula, data, panelVar, timeVar, autoCorr = c("ar1",
     pMethod <- switch(panelCorr.method, "none"="OLS", "phet"="OLS", "pcse"="OLS", "pwls"="GLS", "parks"="GLS")
         
     # check rhotype
-    rhotype <- match.arg(rhotype,c("breg","freg","dw","theil-nagar","ts","theil"))
+    rhotype <- match.arg(rhotype,c("breg","freg","dw","theil-nagar","scorr","theil"))
     
-    # check panel.weight & rho.na.action arguments
+    # check panel.weight & rho.na.rm arguments
     panel.weight <- match.arg(panel.weight) 
-    rho.na.action <- match.arg(rho.na.action)
+    if(!is.logical(rho.na.rm)){
+    	stop("rho.na.rm should be logical argument.")
+    }
     
     # make sure that timevar is in data object; check for NA values
    	if (!(timeVar %in% colnames(data))) {

@@ -1,4 +1,4 @@
-load("/Users/Kostya/Desktop/panelFit/R/panelFit/data/LupPon.RData")
+#load("~/Desktop/Git/panelAR/data/LupPon.RData")
 LupPon.sub <- LupPon[!is.na(LupPon$redist),]
 
 LupPon.sub$redist.lag <- unlist(by(LupPon.sub,LupPon.sub$id,function(x){

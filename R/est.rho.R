@@ -9,8 +9,8 @@
 est.rho <- function(e,k,rhotype){
 	mat <- embed(e,2)
 	
-	if(rhotype %in% c("br","fr")){
-		if(rhotype=="br"){
+	if(rhotype %in% c("breg","freg")){
+		if(rhotype=="breg"){
 		# backward regression
 		# col 1 is resid, col 2 is lag
 		num <- sum(apply(mat,MARGIN=1,prod),na.rm=TRUE)

@@ -1,17 +1,12 @@
 print.panelAR <- function(obj, digits=max(3,getOption("digits")-3),...){
-	if(obj$call$autoCorrType=="none"){
+	if(obj$call$autoCorr=="none"){
 		autoCorr.Method <- "no autocorrelation"
 		} else{
 			autoCorr.Method <- "AR(1) Prais-Winsten correction"
 		}
-	if(obj$call$panelCorrType=="phet"){
-		panelCorr.Method <- "heteroskedasticity across panels"
-		} else if(obj$call$panelCorrType=="pcse"){
-			panelCorr.Method <- "panel-corrected standard errors"
-		} else{
-			panelCorr.Method <- "homoskedastic variance"
-			}
-	cat(paste("\nPanel Regression with ",autoCorr.Method, " and ",panelCorr.Method,", estimated using ", obj$call$method, "\n", sep = "")) 
+	panelCorr.Method  <- switch(obj$call$panelCorrMethod,none="homoskedastic variance",phet="panel heteroskedasticity-robust standard errors",pwls="panel weighted least squares",pcse="panel-corrected standard errors",parks="Parks-Kmenta FGLS")
+
+	cat(paste("\nPanel Regression with ",autoCorr.Method, " and ",panelCorr.Method,"\n", sep = "")) 
 	cat("\nCall:\n", paste(deparse(obj$call), sep = "\n", collapse = "\n"), 
         "\n\n", sep = "")
         

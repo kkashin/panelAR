@@ -1,12 +1,37 @@
-# data
-load("~/Desktop/panelFit/R/panelFit/data/BrookKurtz.RData")
+#load("~/Desktop/Git/panelAR/data/BrookKurtz.RData")
 
-### Table 1 
+BrookKurtz <- function()
+{
+    message("Replication of Brook and Kurtz (2012)'...")
+    
+    cat("\n")
+    cat("Loading data...\n")
+    data(BrookKurtz)
+    cat("> data(BrookKurtz)\n")	
+	
+	# Table 1, Model 1: 
+	message("Table 1, Model 1")
+    cat("> out1.1 <- panelAR(kaopen ~ ldiffpeer + ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrookKurtz, panelVar='country', timeVar='year', autoCorr='psar1', panelCorrMethod='parks',rho.na.rm=TRUE, panel.weight='t', seq.times=TRUE)")
+    out1.1 <- panelAR(kaopen ~ ldiffpeer + ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrookKurtz, panelVar='country', timeVar='year', autoCorr='psar1', panelCorrMethod='pwls',rho.na.rm=TRUE, panel.weight='t', seq.times=TRUE)
+    cat("> summary(out1.1)")
+    summary(out1.1)
 
-# Model 1: 
-out <- panelFit(kaopen ~ ldiffpeer + ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrookKurtz, panelVar="country", timeVar="year", autoCorrType="psar", panelCorrType="het", method="GLS",rho.na.action="omit", panel.weight="t", seq.times=TRUE)
-summary(out)
+	user.prompt <- function () {
+ 		ANSWER <- readline("\nType 'y' to continue to Model 2 or 'n' to quit: ")
+      
+	if (substr(ANSWER, 1, 1) == "n")
+         {stop("Function terminated by user.")}
+     
+	}
 
-# Model 2: 
-out2 <- panelFit(kaopen ~ ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrookKurtz, panelVar="country", timeVar="year", autoCorrType="psar", panelCorrType="het", method="GLS",rho.na.action="omit", panel.weight="t", seq.times=TRUE)
-summary(out2)
+	user.prompt()
+	
+	# Table 1, Model 2: 
+	message("Table 1, Model 2")
+    cat("> out1.2 <- panelAR(kaopen ~ ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrookKurtz, panelVar='country', timeVar='year', autoCorr='psar1', panelCorrMethod='parks',rho.na.rm=TRUE, panel.weight='t', seq.times=TRUE)")
+    out1.2 <- panelAR(kaopen ~ ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrookKurtz, panelVar='country', timeVar='year', autoCorr='psar1', panelCorrMethod='parks',rho.na.rm=TRUE, panel.weight='t', seq.times=TRUE)
+    cat("> summary(out1.2)")
+    summary(out1.2)
+}
+
+BrookKurtz()
