@@ -1,17 +1,15 @@
-\name{plot.panelFit}
-\alias{plot.panelFit}
+\name{plot.panelAR}
+\alias{plot.panelAR}
 \title{
 Plot Panel Structure
 }
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\description{Plots grid of panels and times, colored to distinguish observed and missing data.
 }
 \usage{
-## S3 method for class 'panelFit'
-plot.panelFit(object,legend=TRUE,rot.axis.x=c(0,0),...)
+\method{plot}{panelAR}(x,legend=TRUE,rot.axis=c(0,0),\dots)
 }
 \arguments{
-  \item{object}{an object of class \code{"panelFit"}.
+  \item{x}{an object of class \code{"panelAR"}.
 }
   \item{legend}{logical. If \code{TRUE}, legend is printed.
 }
@@ -20,14 +18,10 @@ plot.panelFit(object,legend=TRUE,rot.axis.x=c(0,0),...)
   \item{\dots}{further arguments passed to or from other methods.}
 }
 
-\details{
-}
-\references{
-}
 \author{
 Konstantin Kashin \email{kkashin@fas.harvard.edu}
 }
-\seealso{The function \code{\link{panelFit}}.
+\seealso{\code{\link{panelAR}}.
 }
 \examples{
 data(WhittenWilliams)

@@ -1,19 +1,18 @@
 \name{predict.panelAR}
 \alias{predict.panelAR}
 \title{
-Predict method for panelAR fitted objects.
+Predict method for fitted objects of class \code{"panelAR"}.
 }
 \description{
 Predicted values from Prais-Winsten regression.
 }
 \usage{
-## S3 Method for class 'panelAR'
-predict.panelAR(object,newdata=NULL,se.fit = FALSE,
-				conf.interval = FALSE, conf.level = 0.95, na.action=na.pass)
+\method{predict}{panelAR}(object,newdata=NULL,se.fit = FALSE,
+				conf.interval = FALSE, conf.level = 0.95, na.action=na.pass,\dots)
 }
 
 \arguments{
-  \item{object}{an object of class \code{\sQuote{panelAR}}.
+  \item{object}{an object of class \code{"panelAR"}.
 }
   \item{newdata}{an optional data frame used for prediction. If omitted, the fitted values are used.
 }
@@ -21,8 +20,12 @@ predict.panelAR(object,newdata=NULL,se.fit = FALSE,
 }
   \item{conf.interval}{logical. If \code{TRUE}, a confidence interval for predicted values is returned. Default: \code{FALSE}.
 }
-  \item{conf.level}{A number in the range \eqn{(0,1)} denoting the confidence level. Default: 0.95.}
-    \item{na.action}{function denoting how to handle missing values in \code{newdata}. See \code{\link{predict.lm}} for details. Default: \code{na.pass}, which predicts \code{NA} values.}
+  \item{conf.level}{A number in the range \eqn{(0,1)} denoting the confidence level. Default: 0.95.
+  	}
+  \item{na.action}{function denoting how to handle missing values in \code{newdata}. See \code{\link{predict.lm}} for details. Default: \code{na.pass}, which predicts \code{NA} values.
+  	}
+\item{\dots}{further arguments passed to or from other methods.
+	}
 }
 
 \value{

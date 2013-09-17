@@ -1,5 +1,5 @@
-\name{runs.analysis}
-\alias{runs.analysis}
+\name{run.analysis}
+\alias{run.analysis}
 \title{
 Run Analysis for Panel Data
 }

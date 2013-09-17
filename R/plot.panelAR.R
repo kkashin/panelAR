@@ -1,8 +1,8 @@
-plot.panelAR <- function(object,legend=TRUE,rot.axis=c(0,0),...){
-	if(class(object)!="panelAR"){
-		stop("object must be of class 'panelAR'.")
+plot.panelAR <- function(x,legend=TRUE,rot.axis=c(0,0),...){
+	if(class(x)!="panelAR"){
+		stop("x must be of class 'panelAR'.")
 	}
-	obs.mat <- object$panelStructure$obs.mat
+	obs.mat <- x$panelStructure$obs.mat
 	N.time <- ncol(obs.mat)
 	N.panel <- nrow(obs.mat)
 	times <- colnames(obs.mat)

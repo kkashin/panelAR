@@ -1,12 +1,12 @@
-predict.panelAR <- function(obj,newdata=NULL,se.fit = FALSE,
-					conf.interval = FALSE, conf.level = 0.95, na.action=na.pass){
-	beta <- obj$coefficients
-	tt <- terms(obj)
+predict.panelAR <- function(object,newdata=NULL,se.fit = FALSE,
+					conf.interval = FALSE, conf.level = 0.95, na.action=na.pass,...){
+	beta <- object$coefficients
+	tt <- terms(object)
 	terms <- delete.response(tt)
-	df <- obj$df
+	df <- object$df
 	
 	if (missing(newdata) || is.null(newdata)) {
-        yhat <- obj$fitted.values
+        yhat <- object$fitted.values
         	 X <- model.matrix(terms,out$model)
     } else{
 		mf <- model.frame(terms, newdata, na.action = na.action)
@@ -18,7 +18,7 @@ predict.panelAR <- function(obj,newdata=NULL,se.fit = FALSE,
 
 	if(se.fit || conf.interval){
 		fit.out <- data.frame(fit=yhat)
-		se <- sqrt(diag(X%*%obj$vcov%*%t(X)))
+		se <- sqrt(diag(X%*%object$vcov%*%t(X)))
 		if(se.fit){
 			fit.out$se <- se		
 		}

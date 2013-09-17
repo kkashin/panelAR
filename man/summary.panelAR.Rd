@@ -8,16 +8,14 @@ Summarizing panelAR Objects
 \code{summary} method for class \code{"panelAR"}.
 }
 \usage{
-## S3 method for class 'panelAR'
-summary(obj, ...)
+\method{summary}{panelAR}(object, \dots)
 
-## S3 method for class 'summary.panelAR'
-print(x,digits = max(3, getOption("digits") - 3), 
-    signif.stars = getOption("show.signif.stars"),...)
+\method{print}{summary.panelAR}(x,digits = max(3, getOption("digits") - 3), 
+    signif.stars = getOption("show.signif.stars"),\dots)
 }
 
 \arguments{
-  \item{obj}{an object of class \code{"panelAR"}.
+  \item{object}{an object of class \code{"panelAR"}.
 }
   \item{x}{an object of class \code{"summary.panelAR"}.
 }
@@ -32,7 +30,7 @@ print(x,digits = max(3, getOption("digits") - 3),
 \details{
 }
 \value{
-The function \code{summary.panelAR} returns a list of summary statistics from the fitted model in \code{obj}. The list contains the following components:
+The function \code{summary.panelAR} returns a list of summary statistics from the fitted model in \code{object}. The list contains the following components:
 	\item{call}{the matched call.}
 	\item{terms}{the terms object used.}
 	\item{coefficients}{the named vector of coefficients.}
@@ -56,8 +54,6 @@ Contents of \code{panelStructure}:
 \item{N.max}{maximum number of observations per panel.}
 \item{N.avg}{average number of observations per panel.}
 \item{N.per.panel}{named vector giving number of observations per panel.}
-}
-\references{
 }
 \author{
 Konstantin Kashin \email{kkashin@fas.harvard.edu}

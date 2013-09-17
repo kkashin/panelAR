@@ -1,6 +1,6 @@
 \name{Rehm}
 \alias{Rehm}
-
+\docType{data}
 \title{Rehm (2011) Replication Data}
 
 \description{Replication data for macro-level study in Rehm (2011), specifically to replicate results reported in Table 3. Data structure is panels of OECD countries from 2001-2004. Data contains measurements of unemployment benefit generosity, Rehm's homogeneity of the risk pool measure, and various controls.}
@@ -25,7 +25,5 @@
 
 \source{Rehm, Philipp. 2011. \dQuote{Social Policy by Popular Demand.} \emph{World Politics} 63(2): 271-299.}
 
-%\references{
-%}
-
-\seealso{\code{\link{panelAR}} for examples which use \code{Rehm}.}
+\seealso{\code{\link{panelAR}}. Run \code{demo(Rehm)} for examples which use \code{Rehm}.}
+\keyword{datasets}

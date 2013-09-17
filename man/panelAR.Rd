@@ -8,7 +8,7 @@
 \usage{
 panelAR(formula, data, panelVar, timeVar, autoCorr = c("ar1", 
     "none", "psar1"), panelCorrMethod = c("none","phet","pcse","pwls",
-    "parks-kmenta"), rhotype ="br", bound.rho = FALSE, rho.na.rm = FALSE, 
+    "parks"), rhotype ="breg", bound.rho = FALSE, rho.na.rm = FALSE, 
     panel.weight = c("t-1", "t"), dof.correction = FALSE, complete.case = FALSE, 
     seq.times = FALSE,  singular.ok=TRUE) 
 }
@@ -23,7 +23,7 @@ panelAR(formula, data, panelVar, timeVar, autoCorr = c("ar1",
 }
   \item{autoCorr}{character string denoting structure of autocorrelation in the data: \code{ar1} denotes AR(1)-type autocorrelation with a common correlation coefficient across all panels, \code{psar1} denotes AR(1)-type autocorrelation with a unique correlation coefficient for each panel, and \code{none} denotes no autocorrelation. Default: \code{AR1}.
 }
-  \item{panelCorrMethod}{character string denoting method used for dealing with panel heteroskedasticity and/or correlation. \code{none} denotes homoskedasticity and no correlation across panels, \code{phet} denotes a Huber-White style sandwich estimator for panel heteroskedasticity, \code{pcse} denotes panel-corrected standard errors that are robust to both heteroskedasticity and contemporaneous correlation across panels, \code{pwls} denotes that a panel weighted least squares procedure is to deal with panel heteroskedasticity, and \code{parks-kmenta} means that FGLS is used to estimate both panel heteroskedasticity and correlation. Default: \code{none}.
+  \item{panelCorrMethod}{character string denoting method used for dealing with panel heteroskedasticity and/or correlation. \code{none} denotes homoskedasticity and no correlation across panels, \code{phet} denotes a Huber-White style sandwich estimator for panel heteroskedasticity, \code{pcse} denotes panel-corrected standard errors that are robust to both heteroskedasticity and contemporaneous correlation across panels, \code{pwls} denotes that a panel weighted least squares procedure is to deal with panel heteroskedasticity, and \code{parks} means that FGLS is used to estimate both panel heteroskedasticity and correlation. Default: \code{none}.
 }
   \item{rhotype}{character string denoting method used for estimating autocorrelation coefficient, rho. Possible options are \code{breg},\code{scorr},\code{freg},\code{theil},\code{dw}, and \code{theil-nagar}. See \sQuote{Details}. Default: \code{breg}.
 }
@@ -50,22 +50,22 @@ While generally designed to estimate Prais-Winsten models on panel data, setting
 A number of common estimators for the autocorrelation coefficient are supported. Specifically:
 \describe{
 \item{\code{breg}}{Linear regression estimator:
-	\eqn{\hat{\rho}_{reg} = \dfrac{\sum_{t=2}^{T_i} \hat{\epsilon}_{i,t}\hat{\epsilon}_{i,t-1}}{\sum_{t=1}^{T_i-1} \hat{\epsilon}_{i,t}^2}}
+	\eqn{\hat{\rho}_{breg} = \frac{\sum_{t=2}^{T_i} \hat{\epsilon}_{i,t}\hat{\epsilon}_{i,t-1}}{\sum_{t=1}^{T_i-1} \hat{\epsilon}_{i,t}^2}}
 }
 \item{\code{scorr}}{Sample correlation coefficient estimator:
-	\eqn{\hat{\rho}_{scorr} = \dfrac{\sum_{t=2}^{T_i} \hat{\epsilon}_{i,t}\hat{\epsilon}_{i,t-1}}{\sum_{t=1}^{T_i} \hat{\epsilon}_{i,t}^2}}
+	\eqn{\hat{\rho}_{scorr} = \frac{\sum_{t=2}^{T_i} \hat{\epsilon}_{i,t}\hat{\epsilon}_{i,t-1}}{\sum_{t=1}^{T_i} \hat{\epsilon}_{i,t}^2}}
 }
 \item{\code{freg}}{Forward linear regression estimator:
-	\eqn{\hat{\rho}_{fr} = \dfrac{\sum_{t=1}^{T_i-1} \hat{\epsilon}_{i,t}\hat{\epsilon}_{i,t+1}}{\sum_{t=1}^{T_i-1} \hat{\epsilon}_{i,t+1}^2}}
+	\eqn{\hat{\rho}_{fr} = \frac{\sum_{t=1}^{T_i-1} \hat{\epsilon}_{i,t}\hat{\epsilon}_{i,t+1}}{\sum_{t=1}^{T_i-1} \hat{\epsilon}_{i,t+1}^2}}
 }
 \item{\code{theil}}{Theil estimator:
-	\eqn{\hat{\rho}_{theil} = \hat{\rho}_{scorr} \dfrac{T_i-k}{T_i-1}}
+	\eqn{\hat{\rho}_{theil} = \hat{\rho}_{scorr} \frac{T_i-k}{T_i-1}}
 }
 \item{\code{dw}}{Durbin-Watson estimator:
-	\eqn{\hat{\rho}_{dw} = 1-\dfrac{1}{2}\dfrac{\sum_{t=2}^{T_i} (\hat{\epsilon}_{i,t}-\hat{\epsilon}_{i,t-1})^2}{\sum_{t=1}^{T_i} \hat{\epsilon}_{i,t}^2}}
+	\eqn{\hat{\rho}_{dw} = 1-\frac{1}{2} \frac{\sum_{t=2}^{T_i} (\hat{\epsilon}_{i,t}-\hat{\epsilon}_{i,t-1})^2}{\sum_{t=1}^{T_i} \hat{\epsilon}_{i,t}^2}}
 }
 \item{\code{theil-nagar}}{Theil-Nagar estimator:
-	\eqn{\hat{\rho}_{theil-nagar} = \dfrac{T_i^2 \hat{\rho}_{dw} + k^2}{T_i^2-k^2}}
+	\eqn{\hat{\rho}_{theil-nagar} = \frac{T_i^2 \hat{\rho}_{dw} + k^2}{T_i^2-k^2}}
 }
 } % end of describe
 
@@ -113,7 +113,7 @@ Konstantin Kashin \email{kkashin@fas.harvard.edu}
 
 \code{\link{plot.panelAR}} to plot image of panel structure.
 
-\code{\link{runs.analysis}} for analysis of runs.
+\code{\link{run.analysis}} for analysis of runs.
 }
 \examples{
 # Panel-specific AR(1) with PCSE

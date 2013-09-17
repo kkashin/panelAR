@@ -1,6 +1,6 @@
 \name{WhittenWilliams}
 \alias{WhittenWilliams}
-
+\docType{data}
 \title{Whitten and Williams (2011) Replication Data}
 
 \description{Replication data for Whitten and Williams (2011). Data structure is panels of 19 advanced democracies from 1945-2000. Data contains measurements of military spending as a percentage of GDP as well as other variables.}
@@ -37,8 +37,5 @@
 }
 
 \source{Whitten, Guy D. and Laron K. Williams. 2011. \dQuote{Buttery Guns and Welfare Hawks: The Politics of Defense Spending in Advanced Industrial Democracies.} \emph{American Journal of Political Science} 55(1): 117-134.}
-
-%\references{
-%}
-
-\seealso{\code{\link{panelAR}} and \code{\link{demo(WhittenWilliams)}} for examples which use \code{WhittenWilliams}.}
+\seealso{\code{\link{panelAR}}. Run \code{demo(WhittenWilliams)} for examples which use \code{WhittenWilliams}.}
+\keyword{datasets}

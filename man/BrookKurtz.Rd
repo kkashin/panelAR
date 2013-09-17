@@ -1,6 +1,6 @@
 \name{BrookKurtz}
 \alias{BrookKurtz}
-
+\docType{data}
 \title{Brooks and Kurtz (2012) Replication Data}
 
 \description{Replication data for Brooks and Kurtz (2012). Data structure is panels of Latin American countries from 1983-2007. Data contains measurements of capital account openness, capital account openness diffusion variables, and a variety of economic and financial controls.}
@@ -21,7 +21,7 @@
 		\item{\code{ldiffisi}: ISI PEER.}
 		\item{\code{ldiffgrowth}: SUCCESS.}
 		\item{\code{ldiffinflation}:  INFLATION PERFORMANCE.}
-		\item{\cpde{ldiffneg}: NEGATIVE LEARNING negative learning diffusion variable, where .}
+		\item{\code{ldiffneg}: NEGATIVE LEARNING negative learning diffusion variable, where .}
 		\item{\code{ldiffembi}: COMPETITION.}
 		\item{\code{limf}: IMF at time \emph{t}-1}
 		
@@ -47,4 +47,5 @@
 
 \source{Brooks, Sarah M. and Marcus J. Kurtz. 2012. \dQuote{Paths to Financial Policy Diffusion: Statist Legacies in Latin America's Globalization.} \emph{International Organization} 66:95-128.}
 
-\seealso{\code{\link{panelAR}} and \code{\link{demo(BrookKurtz)}} for examples which use \code{BrookKurtz}.}
+\seealso{\code{\link{panelAR}}. Run \code{demo(BrookKurtz)} for examples which use \code{BrookKurtz}.}
+\keyword{datasets}

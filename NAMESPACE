@@ -1,4 +1,4 @@
-export(panelAR, runs.analysis)
+export(panelAR, run.analysis)
  
 S3method(summary, panelAR)
 S3method(print, panelAR)
