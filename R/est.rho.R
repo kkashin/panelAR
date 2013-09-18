@@ -30,30 +30,24 @@ est.rho <- function(e,k,rhotype){
 		
 		if(rhotype=="dw"){
 		# Durbin-Watson calculation 
-		# see page 923 of Greene
-		#print(paste("D-W rho:",1-dwal/2))
 		rho <- 1-dwal/2
 		} else{
 		# Theil-Nagar
-		rho <- (sseN^2 * (1-dwal/2) + (k-1)^2)/(sseN^2 - (k-1)^2)
+		rho <- (sseN^2 * (1-dwal/2) + k^2)/(sseN^2 - k^2)
 		}	
 	} else{
 		sse <- sum(e^2,na.rm=TRUE)
 		sseN <- length(na.omit(e))
 		cov <- sum(apply(mat,MARGIN=1,prod),na.rm=TRUE)
-		# time-series rho
+		# scorr
 		rho <- cov/sse
 		if(rhotype=="theil"){
 			# Theil rho
-			# scale by (T-K)/(T-1)
-			#r <- cov/sse (estimate of rho)
-			# page 926 of Greene
+			# scale scorr by (T-k)/(T-1)
+			# Ncov is T
+			# Ncov is sseN-1 = T-1
 			Ncov <- length(na.omit(apply(mat,MARGIN=1,prod)))
-			#print((sseN - k+1)/Ncov*rho) -- THIS MATCHES THEIL in Stata
-			#print((sseN - k)/Ncov*rho) -- THIS IS FORMULA from 926 but doesn't match
-			# sseN-1 = Ncov
 			rho <- (sseN - k)/Ncov*rho
-
 		}
 	}
 	rho

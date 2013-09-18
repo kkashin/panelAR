@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{panelAR}
 \alias{panelAR}
 \alias{print.panelAR}
@@ -100,7 +101,13 @@ Details of \code{panelStructure}:
 \item{N.cov}{number of panel covariances estimated.}
 } % end of \value
 \references{
-%% ~put references to the literature/web site here ~
+Beck, Nathaniel and Jonathan N. Katz. 1995. \dQuote{What to do (and not to do) with time-series cross-section data.} \emph{Am. Polit. Sci. Rev.} 89:634-47.
+
+Greene, William H. 2012. \emph{Econometric Analysis}. 7ed. Prentice Hall.
+
+Judge, George G., William E. Griffiths, R. Carter Hill, Helmut Lütkepohl, and Tsoung-Chao Lee. 1985. \emph{The Theory and Practice of Econometrics}. 2ed. John Wiley & Sons.
+
+Prais, S., and C. Winsten. 1954. \dQuote{Trend Estimation and Serial Correlation.} Cowles Commission Discussion Paper No. 383, Chicago.
 }
 \author{
 Konstantin Kashin \email{kkashin@fas.harvard.edu}
