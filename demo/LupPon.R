@@ -15,7 +15,7 @@ LupPon <- function()
     data(LupPon)
     cat("> data(LupPon)\n")
     
-    cat("Subsetting data...\n")
+    cat("Subsetting data and calculating lagged DV...\n")
 	cat("> LupPon <- LupPon[!is.na(LupPon$redist),]\nLupPon$redist.lag <- unlist(by(LupPon,LupPon$id,function(x){c(NA,x[,\"redist\"][1:(length(x[,\"redist\"])-1)])}))\nLupPon$time <- unlist(by(LupPon,LupPon$id,function(x) seq(1:nrow(x))))")
 	LupPon <- LupPon[!is.na(LupPon$redist),]
 	LupPon$redist.lag <- unlist(by(LupPon,LupPon$id,function(x){c(NA,x[,"redist"][1:(length(x[,"redist"])-1)])}))
@@ -23,8 +23,8 @@ LupPon <- function()
 
 	# Specification 1 
 	user.prompt("specification 1")
-	cat("> out1 <- panelAR(redist ~ redist.lag + dvpratio9050 + dvpratio5010 + dvturnout + dvfempar + dvstddisp_gall + dvpvoc + dvunion + dvunempl, data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
-	out <- panelAR(redist ~ redist.lag + dvpratio9050 + dvpratio5010 + dvturnout + dvfempar + dvstddisp_gall + dvpvoc + dvunion + dvunempl, data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> out1 <- panelAR(redist ~ redist.lag + ratio9050 + ratio5010 + turnout + fempar + propind + pvoc + union + unempl, data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	out <- panelAR(redist ~ redist.lag + ratio9050 + ratio5010 + turnout + fempar + propind + pvoc + union + unempl, data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out1)")
 	summary(out1)
 	
@@ -36,15 +36,15 @@ LupPon <- function()
 	index <- which(abs((mod1.resid-mean(mod1.resid))/sd(mod1.resid)) <= 1.5)
 	LupPon.nooutlier <- out1$model[index,]
 	
-	cat("> out2 <- panelAR(redist ~ redist.lag + dvpratio9050 + dvpratio5010 + dvturnout + dvfempar + dvstddisp_gall + dvpvoc + dvunion + dvunempl, data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
-	out2 <- panelAR(redist ~ redist.lag + dvpratio9050 + dvpratio5010 + dvturnout + dvfempar + dvstddisp_gall + dvpvoc + dvunion + dvunempl, data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> out2 <- panelAR(redist ~ redist.lag + ratio9050 + ratio5010 + turnout + fempar + propind + pvoc + union + unempl, data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	out2 <- panelAR(redist ~ redist.lag + ratio9050 + ratio5010 + turnout + fempar + propind + pvoc + union + unempl, data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out2)")
 	summary(out2)
 	
 	# Specification 3
 	user.prompt("specification 3")
-	cat("> out3 <- panelAR(redist ~ dvpratio9050 + dvpratio5010 + as.factor(id), data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
-	out3 <- panelAR(redist ~ dvpratio9050 + dvpratio5010 + as.factor(id), data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> out3 <- panelAR(redist ~ ratio9050 + ratio5010 + as.factor(id), data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	out3 <- panelAR(redist ~ ratio9050 + ratio5010 + as.factor(id), data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out3)")
 	summary(out3)	
 
@@ -55,16 +55,16 @@ LupPon <- function()
 	mod3.resid <- out3$residuals
 	index <- which(abs((mod3.resid-mean(mod3.resid))/sd(mod3.resid)) <= 1.5)
 	LupPon.nooutlier <- out3$model[index,]
-	cat("> out4 <- panelAR(redist ~ dvpratio9050 + dvpratio5010 + as.factor(id), data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
-	out4 <- panelAR(redist ~ dvpratio9050 + dvpratio5010 + as.factor(id), data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> out4 <- panelAR(redist ~ ratio9050 + ratio5010 + as.factor(id), data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	out4 <- panelAR(redist ~ ratio9050 + ratio5010 + as.factor(id), data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out4)")
 	summary(out4)	
 	
 
 	# Specification 5
 	user.prompt("specification 5")
-	cat("> out5 <- panelAR(redist ~ redist.lag + dvratio9010 + dvskew + dvturnout + dvfempar + dvstddisp_gall + dvpvoc + dvunion + dvunempl, data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
-	out5 <- panelAR(redist ~ redist.lag + dvratio9010 + dvskew + dvturnout + dvfempar + dvstddisp_gall + dvpvoc + dvunion + dvunempl, data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> out5 <- panelAR(redist ~ redist.lag + ratio9010 + skew + turnout + fempar + propind + pvoc + union + unempl, data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	out5 <- panelAR(redist ~ redist.lag + ratio9010 + skew + turnout + fempar + propind + pvoc + union + unempl, data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out5)")
 	summary(out5)
 
@@ -75,15 +75,15 @@ LupPon <- function()
 	mod5.resid <- out5$residuals
 	index <- which(abs((mod5.resid-mean(mod5.resid))/sd(mod5.resid)) <= 1.5)
 	LupPon.nooutlier <- out5$model[index,]
-	cat("> out6 <- panelAR(redist ~ redist.lag + dvratio9010 + dvskew + dvturnout + dvfempar + dvstddisp_gall + dvpvoc + dvunion + dvunempl, data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
-	out6 <- panelAR(redist ~ redist.lag + dvratio9010 + dvskew + dvturnout + dvfempar + dvstddisp_gall + dvpvoc + dvunion + dvunempl, data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> out6 <- panelAR(redist ~ redist.lag + ratio9010 + skew + turnout + fempar + propind + pvoc + union + unempl, data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	out6 <- panelAR(redist ~ redist.lag + ratio9010 + skew + turnout + fempar + propind + pvoc + union + unempl, data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out6)")
 	summary(out6)	
 	
 
 	# Specification 7
 	user.prompt("specification 7")
-	cat("> out7 <- panelAR(redist ~ dvratio9010 + dvskew + as.factor(id), data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	cat("> out7 <- panelAR(redist ~ ratio9010 + skew + as.factor(id), data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
 	out7 <- panelAR(redist ~ dvratio9010 + dvskew + as.factor(id), data=LupPon, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out7)")
 	summary(out7)	
@@ -95,7 +95,7 @@ LupPon <- function()
 	mod7.resid <- out7$residuals
 	index <- which(abs((mod7.resid-mean(mod7.resid))/sd(mod7.resid)) <= 1.5)
 	LupPon.nooutlier <- out7$model[index,]
-	cat("> out8 <- panelAR(redist ~ dvratio9010 + dvskew + as.factor(id), data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
+	cat("> out8 <- panelAR(redist ~ ratio9010 + skew + as.factor(id), data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)")
 	out8 <- panelAR(redist ~ dvratio9010 + dvskew + as.factor(id), data=LupPon.nooutlier, panelVar='id', timeVar='time', autoCorr='ar1', panelCorrMethod='pcse',rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out8)")
 	summary(out8)	

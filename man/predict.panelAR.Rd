@@ -8,7 +8,7 @@ Predicted values from Prais-Winsten regression.
 }
 \usage{
 \method{predict}{panelAR}(object,newdata=NULL,se.fit = FALSE,
-				conf.interval = FALSE, conf.level = 0.95, na.action=na.pass,\dots)
+					conf.interval = FALSE, conf.level = 0.95, na.action=na.pass,\dots)
 }
 
 \arguments{
@@ -32,9 +32,7 @@ Predicted values from Prais-Winsten regression.
 	\item{fit}{either a vector or a data frame containing the fitted values, as well as standard errors and/or intervals (if specified). If \code{se.fit="TRUE"}, \code{se.fit} column provides the standard errors. If \code{interval} is set, \code{lb} and \code{ub} provide the lower and upper bounds of the interval, respectively.}
 	\item{df}{degrees of freedom.}
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Konstantin Kashin \email{kkashin@fas.harvard.edu}
 }

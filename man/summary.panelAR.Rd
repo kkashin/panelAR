@@ -2,7 +2,7 @@
 \alias{summary.panelAR}
 \alias{print.summary.panelAR}
 \title{
-Summarizing panelAR Objects
+Summary method for fitted objects of class \code{"panelAR"}
 }
 \description{
 \code{summary} method for class \code{"panelAR"}.
@@ -27,8 +27,6 @@ Summarizing panelAR Objects
 }
 }
 
-\details{
-}
 \value{
 The function \code{summary.panelAR} returns a list of summary statistics from the fitted model in \code{object}. The list contains the following components:
 	\item{call}{the matched call.}

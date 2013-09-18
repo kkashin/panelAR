@@ -14,8 +14,6 @@ run.analysis(object)
 }
 }
 
-\details{
-}
 \value{
 	The output of the function is an object of class \code{"panelAR.runs"}.
 	
@@ -23,9 +21,7 @@ run.analysis(object)
 	\item{runs}{a data frame, with each row corresponding to a run in the data. Panels with multiple runs appear in multiple rows. The data frame contains the start time of the run, the end time of the run, and the length of the run.}
 
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Konstantin Kashin \email{kkashin@fas.harvard.edu}
 }

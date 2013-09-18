@@ -1,7 +1,7 @@
 \name{vcov.panelAR}
 \alias{vcov.panelAR}
 \title{
-Variance-covariance method for panelAR fitted objects.
+Variance-covariance method for fitted objects of class \code{"panelAR"}
 }
 \description{
 \code{vcov} method for class \code{"panelAR"}.
