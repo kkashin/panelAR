@@ -41,4 +41,11 @@ Konstantin Kashin \email{kkashin@fas.harvard.edu}
 See \code{\link{predict.lm}} and \code{\link{napredict}} for additional details.
 }
 \examples{
+data(Rehm)
+out <- panelAR(NURR ~ ., data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', 
+panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+summary(out)
+
+# fitted values (with SE and CI)
+predict(out, se.fit=TRUE, conf.interval=TRUE)
 }
