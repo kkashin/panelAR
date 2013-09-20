@@ -1,5 +1,3 @@
-#load("~/Desktop/Git/panelAR/data/Rehm.RData")
-
 user.prompt <- function (x) {
  	ANSWER <- readline(paste("\nType 'y' to continue to", x,"or 'n' to quit: ",sep=" "))  
 	if (substr(ANSWER, 1, 1) == "n")

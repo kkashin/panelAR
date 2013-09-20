@@ -1,5 +1,3 @@
-#load("~/Desktop/Git/panelAR/data/BrooksKurtz.RData")
-
 BrooksKurtz <- function()
 {
     message("Replication of Table 1 of Brooks and Kurtz (2012)'...")
