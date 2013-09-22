@@ -12,7 +12,7 @@ BrooksKurtz <- function()
     cat("> out1.1 <- panelAR(kaopen ~ ldiffpeer + ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrooksKurtz, panelVar='country', timeVar='year', autoCorr='psar1', panelCorrMethod='parks',rho.na.rm=TRUE, panel.weight='t', seq.times=TRUE)")
     out1.1 <- panelAR(kaopen ~ ldiffpeer + ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrooksKurtz, panelVar='country', timeVar='year', autoCorr='psar1', panelCorrMethod='pwls',rho.na.rm=TRUE, panel.weight='t', seq.times=TRUE)
     cat("> summary(out1.1)")
-    summary(out1.1)
+    print(summary(out1.1))
 
 	user.prompt <- function () {
  		ANSWER <- readline("\nType 'y' to continue to Model 2 or 'n' to quit: ")
@@ -29,7 +29,7 @@ BrooksKurtz <- function()
     cat("> out1.2 <- panelAR(kaopen ~ ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrooksKurtz, panelVar='country', timeVar='year', autoCorr='psar1', panelCorrMethod='parks',rho.na.rm=TRUE, panel.weight='t', seq.times=TRUE)")
     out1.2 <- panelAR(kaopen ~ ldiffisi + ldiffgrowth + ldiffinflation  + ldiffneg + ldiffembi + limf + isi_objective + partisan + checks +  lusffr + linflation + lbankra + lcab + lgrowth +  ltradebalance + lngdpcap + lngdp + brk + timetrend + y1995, data=BrooksKurtz, panelVar='country', timeVar='year', autoCorr='psar1', panelCorrMethod='pwls',rho.na.rm=TRUE, panel.weight='t', seq.times=TRUE)
     cat("> summary(out1.2)")
-    summary(out1.2)
+    print(summary(out1.2))
 }
 
 BrooksKurtz()
