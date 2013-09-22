@@ -19,7 +19,7 @@ run.analysis(object)
 	
 	\item{run.count}{a named vector indicating the number of runs per panel.}
 	\item{runs}{a data frame, with each row corresponding to a run in the data. Panels with multiple runs appear in multiple rows. The data frame contains the start time of the run, the end time of the run, and the length of the run.}
-
+	\item{rho}{autocorrelation parameters. Scalar if \code{"ar1"} option was used, vector of length \eqn{N_p} (number of panels) if \code{"psar1"} option was used, and \code{NULL} if \code{"none"} option was used.}
 }
 
 \author{
