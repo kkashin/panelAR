@@ -78,10 +78,9 @@ panelAR <- function(formula, data, panelVar, timeVar, autoCorr = c("ar1",
     data <- data[order.index, ]
     panel.vec <- panel.vec[order.index]
     time.vec <- time.vec[order.index]
-    dataNoInd <- data[,which(!colnames(data) %in% c(panelVar,timeVar))]
     
     # run OLS and extract results
-    lm.out <- lm(formula = formula, data = dataNoInd,singular.ok=singular.ok)
+    lm.out <- lm(formula = formula, data = data,singular.ok=singular.ok)
     
     # extract terms
     mterms <- lm.out$terms
