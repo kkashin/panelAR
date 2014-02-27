@@ -4,7 +4,7 @@
 \alias{print.panelAR}
 \title{Estimation of Linear AR(1) Panel Data Models with Cross-Sectional Heteroskedasticity and/or Correlation
 }
-\description{The function estimates linear models on panel data structures in the presence of AR(1)-type autocorrelation as well as panel heteroskedasticity and/or contemporaneous correlation. First, AR(1)-type autocorrelation is addressed via a two-step Prais-Winsten feasible generalized least squares (FGLS) procedure, where the autocorrelation coefficients may be panel-specific. Subsequently, one can choose to implement \sQuote{sandwich}-type robust standard errors with OLS, panel weighted least squares (WLS), panel-corrected standard errors (PCSEs), or the Parks-Kemnta FGLS estimator.
+\description{The function estimates linear models on panel data structures in the presence of AR(1)-type autocorrelation as well as panel heteroskedasticity and/or contemporaneous correlation. First, AR(1)-type autocorrelation is addressed via a two-step Prais-Winsten feasible generalized least squares (FGLS) procedure, where the autocorrelation coefficients may be panel-specific. Subsequently, one can choose to implement \sQuote{sandwich}-type robust standard errors with OLS, panel weighted least squares (WLS), panel-corrected standard errors (PCSEs), or the Parks-Kme4nta FGLS estimator.
 }
 \usage{
 panelAR(formula, data, panelVar, timeVar, autoCorr = c("ar1", 
@@ -26,7 +26,7 @@ panelAR(formula, data, panelVar, timeVar, autoCorr = c("ar1",
 }
   \item{panelCorrMethod}{character string denoting method used for dealing with panel heteroskedasticity and/or correlation. \code{none} denotes homoskedasticity and no correlation across panels, \code{phet} denotes a Huber-White style sandwich estimator for panel heteroskedasticity, \code{pcse} denotes panel-corrected standard errors that are robust to both heteroskedasticity and contemporaneous correlation across panels, \code{pwls} denotes that a panel weighted least squares procedure is to deal with panel heteroskedasticity, and \code{parks} means that Parks-Kmenta FGLS is used to estimate both panel heteroskedasticity and correlation. Default: \code{none}.
 }
-  \item{rhotype}{character string denoting method used for estimating autocorrelation coefficient, \eqn{\rho}. Possible options are \code{breg},\code{scorr},\code{freg},\code{theil},\code{dw}, and \code{theil-nagar}. See \sQuote{Details}. Default: \code{breg}.
+  \item{rhotype}{character string denoting method used for estimating autocorrelation coefficient, \eqn{\rho}. Possible options are \code{breg}, \code{scorr}, \code{freg}, \code{theil}, \code{dw}, and \code{theil-nagar}. See \sQuote{Details}. Default: \code{breg}.
 }
   \item{bound.rho}{logical. If \code{TRUE}, the panel-specific autocorrelation coefficient \eqn{\rho_i} is bounded to \eqn{[-1,1]} in the calculation of \eqn{\rho}; used only for \code{autoCorr="ar1"}. Default: \code{TRUE}.
 }
@@ -125,7 +125,8 @@ Konstantin Kashin \email{kkashin@fas.harvard.edu}
 \examples{
 # Common AR(1) with PCSE
 data(Rehm)
-out <- panelAR(NURR ~ ., data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', 
+out <- panelAR(NURR ~ gini + mean_ur + selfemp + cum_right + tradeunion + deficit + 
+tradeopen + gdp_growth, data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', 
 panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 summary(out)
 

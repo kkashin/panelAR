@@ -19,7 +19,7 @@
 		\item{\code{kaopen}: capital account openness. Higher value indicates more open capital account.}
 		}
 		
-	Diffusion variables, constructed to be a weighted average of the lagged outcome variable for all countries in a given government's \dQuote{neighborhood}. Proximity is defined via a weight matrix W such that the diffusion variable is constructed as $WY_{t-1}$. The weight matrix differs across the following diffusion variables. See pages 112-114 of Brooks and Kurtz (2012) for details.
+	Diffusion variables, constructed to be a weighted average of the lagged outcome variable for all countries in a given government's \dQuote{neighborhood}. Proximity is defined via a weight matrix W such that the diffusion variable is constructed as \eqn{WY_{t-1}}. The weight matrix differs across the following diffusion variables. See pages 112-114 of Brooks and Kurtz (2012) for details.
 	\itemize{
 		\item{\code{ldiffpeer}: baseline diffusion effect / all countries diffusion variable.}
 		\item{\code{ldiffisi}: import-substituting industrialization (ISI) peer diffusion variable.}

@@ -8,7 +8,7 @@ Predicted values from Prais-Winsten regression.
 }
 \usage{
 \method{predict}{panelAR}(object,newdata=NULL,se.fit = FALSE,
-					conf.interval = FALSE, conf.level = 0.95, na.action=na.pass,\dots)
+      conf.interval = FALSE, conf.level = 0.95, na.action=na.pass,\dots)
 }
 
 \arguments{
@@ -42,7 +42,7 @@ See \code{\link{predict.lm}} and \code{\link{napredict}} for additional details.
 }
 \examples{
 data(Rehm)
-out <- panelAR(NURR ~ ., data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', 
+out <- panelAR(NURR ~ gini, data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', 
 panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 summary(out)
 

@@ -33,8 +33,8 @@ Rehm <- function()
 	user.prompt("specification 9")
 	
 	## Specification 9
-	cat("> out9 <- panelAR(NURR ~ ., data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)\n")
-	out9 <- panelAR(NURR ~ ., data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
+	cat("> out9 <- panelAR(NURR ~ gini + mean_ur + selfemp + cum_right + tradeunion + deficit + tradeopen + gdp_growth, data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)\n")
+	out9 <- panelAR(NURR ~ gini+mean_ur+selfemp+cum_right+tradeunion+deficit+tradeopen+gdp_growth, data=Rehm, panelVar='ccode', timeVar='year', autoCorr='ar1', panelCorrMethod='pcse', rho.na.rm=TRUE, panel.weight='t-1', bound.rho=TRUE)
 	cat("> summary(out9)")
 	print(summary(out9))
 }

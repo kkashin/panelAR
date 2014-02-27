@@ -18,7 +18,9 @@ predict.panelAR <- function(object,newdata=NULL,se.fit = FALSE,
 
 	if(se.fit || conf.interval){
 		fit.out <- data.frame(fit=yhat)
-		se <- sqrt(diag(X%*%object$vcov%*%t(X)))
+		d <- diag(X%*%object$vcov%*%t(X))
+		d[d<0] <- NA
+		se <- sqrt(d)
 		if(se.fit){
 			fit.out$se <- se		
 		}
